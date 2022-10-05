@@ -6,7 +6,9 @@ public class Coin : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other) {
         if(other.collider.tag == "Player"){
-            ScoreManager.instance.ChangeScore(1);
+            //ScoreManager.instance.ChangeScore(1);
+            PowerupSingleton.instance.YellowBell(1);
+            
             Destroy(gameObject);
         }  
     }

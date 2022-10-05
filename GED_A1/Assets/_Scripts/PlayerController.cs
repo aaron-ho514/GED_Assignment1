@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectile;
     public Transform projectilePos;
-
+   
     private void OnEnable() {
         inputAction.Enable();
     }
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Awake() {
-
+       
         inputAction = new PlayerAction();
 
         inputAction.Player.Jump.performed += cntxt => Jump();
@@ -50,9 +50,10 @@ public class PlayerController : MonoBehaviour
 
         distanceToGround = GetComponent<Collider>().bounds.extents.y;
         cameraRotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
-        
+    
     }
 
+  
     private void Jump()
     {
         if(isGrounded)
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
         bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
         bulletRb.AddForce(transform.up * 1f, ForceMode.Impulse);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
         
         playerCamera.transform.rotation = Quaternion.Euler(cameraRotation);
         transform.eulerAngles = new Vector3(transform.rotation.x, cameraRotation.y, transform.rotation.z);
-
+        //PowerupSingleton.instance.BlueBell(walkSpeed);
         transform.Translate(Vector3.right * Time.deltaTime * move.x * walkSpeed, Space.Self);
         transform.Translate(Vector3.forward * Time.deltaTime * move.y * walkSpeed, Space.Self);
 
